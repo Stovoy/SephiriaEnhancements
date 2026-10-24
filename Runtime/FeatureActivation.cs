@@ -15,6 +15,8 @@ namespace SephiriaEnhancements.Runtime
                 feature != FeatureId.Gameplay && feature != FeatureId.MultiplayerAccess &&
                 Owner(feature) == feature).ToArray();
 
+        internal static bool DefaultEnabled(FeatureId feature) => feature == FeatureId.CrashRecovery;
+
         internal FeatureActivation(Func<FeatureId, bool> readOptIn)
         {
             enabled.Add(FeatureId.Settings);

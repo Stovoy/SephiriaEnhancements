@@ -8,21 +8,21 @@ namespace SephiriaEnhancements.Configuration
         internal const string Help = "SephiriaEnhancements.OptIn.Help";
         private static readonly Dictionary<string, string> Text = new()
         {
-            ["en-US"] = "Off by default. Restart the game after changing this switch. Individual settings still apply. Only joining and reconnecting start enabled.",
-            ["zh-CN"] = "默认关闭。更改此开关后请重启游戏。各项设置仍然生效。默认仅启用加入与重连。",
-            ["zh-TW"] = "預設關閉。更改此開關後請重新啟動遊戲。各項設定仍然適用。預設僅啟用加入與重新連線。",
-            ["ja-JP"] = "初期設定はオフです。変更後はゲームを再起動してください。個別設定も適用されます。参加と再接続のみ初期状態で有効です。",
-            ["ko-KR"] = "기본적으로 꺼져 있습니다. 변경 후 게임을 다시 시작하세요. 개별 설정도 적용됩니다. 참가와 재접속만 기본적으로 켜집니다.",
-            ["de-DE"] = "Standardmäßig aus. Nach Änderungen das Spiel neu starten. Einzelne Einstellungen gelten weiterhin. Nur Beitritt und Wiederverbindung sind anfangs aktiv.",
-            ["es-ES"] = "Desactivado por defecto. Reinicia el juego tras cambiar esta opción. Se aplican los ajustes individuales. Solo unirse y reconectarse están activos inicialmente.",
-            ["fr-FR"] = "Désactivé par défaut. Redémarrez le jeu après modification. Les réglages individuels restent applicables. Seules la participation et la reconnexion sont actives au départ.",
-            ["it-IT"] = "Disattivato per impostazione predefinita. Riavvia il gioco dopo la modifica. Restano validi i singoli parametri. Solo ingresso e riconnessione sono attivi inizialmente.",
-            ["pl-PL"] = "Domyślnie wyłączone. Po zmianie uruchom grę ponownie. Nadal obowiązują osobne ustawienia. Domyślnie aktywne są tylko dołączanie i ponowne łączenie.",
-            ["pt-BR"] = "Desativado por padrão. Reinicie o jogo após alterar esta opção. As configurações individuais continuam válidas. Apenas entrada e reconexão começam ativas.",
-            ["ru-RU"] = "По умолчанию выключено. После изменения перезапустите игру. Отдельные настройки продолжают действовать. Изначально включены только вход и переподключение.",
-            ["sv-SE"] = "Av som standard. Starta om spelet efter ändringar. Enskilda inställningar gäller fortfarande. Endast anslutning och återanslutning är aktiva från början.",
-            ["th-TH"] = "ปิดตามค่าเริ่มต้น โปรดเริ่มเกมใหม่หลังเปลี่ยนตัวเลือกนี้ การตั้งค่าแต่ละรายการยังมีผล เปิดเฉพาะการเข้าร่วมและการเชื่อมต่อใหม่ตามค่าเริ่มต้น",
-            ["tr-TR"] = "Varsayılan olarak kapalıdır. Değiştirdikten sonra oyunu yeniden başlatın. Ayrı ayarlar geçerliliğini korur. Başlangıçta yalnızca katılma ve yeniden bağlanma açıktır."
+            ["en-US"] = "Restart the game after changing this switch. Crash recovery is on by default; other optional features are off. Individual settings still apply.",
+            ["zh-CN"] = "更改此开关后请重启游戏。崩溃恢复默认开启，其他可选功能默认关闭。各项设置仍然生效。",
+            ["zh-TW"] = "更改此開關後請重新啟動遊戲。當機復原預設開啟，其他選用功能預設關閉。各項設定仍然適用。",
+            ["ja-JP"] = "変更後はゲームを再起動してください。クラッシュ復元は初期状態でオン、他の任意機能はオフです。個別設定も適用されます。",
+            ["ko-KR"] = "변경 후 게임을 다시 시작하세요. 충돌 복구는 기본적으로 켜지고 다른 선택 기능은 꺼집니다. 개별 설정도 적용됩니다.",
+            ["de-DE"] = "Nach Änderungen das Spiel neu starten. Absturzwiederherstellung ist standardmäßig an, andere optionale Funktionen sind aus. Einzelne Einstellungen gelten weiterhin.",
+            ["es-ES"] = "Reinicia el juego tras cambiar esta opción. La recuperación tras fallos está activada por defecto; las demás funciones opcionales están desactivadas. Se aplican los ajustes individuales.",
+            ["fr-FR"] = "Redémarrez le jeu après modification. La récupération après plantage est activée par défaut ; les autres fonctions facultatives sont désactivées. Les réglages individuels restent applicables.",
+            ["it-IT"] = "Riavvia il gioco dopo la modifica. Il recupero dopo un arresto è attivo per impostazione predefinita; le altre funzioni opzionali sono disattivate. Restano validi i singoli parametri.",
+            ["pl-PL"] = "Po zmianie uruchom grę ponownie. Odzyskiwanie po awarii jest domyślnie włączone; inne opcjonalne funkcje są wyłączone. Nadal obowiązują osobne ustawienia.",
+            ["pt-BR"] = "Reinicie o jogo após alterar esta opção. A recuperação após falhas está ativada por padrão; os outros recursos opcionais estão desativados. As configurações individuais continuam válidas.",
+            ["ru-RU"] = "После изменения перезапустите игру. Восстановление после сбоя включено по умолчанию; остальные необязательные функции выключены. Отдельные настройки продолжают действовать.",
+            ["sv-SE"] = "Starta om spelet efter ändringar. Återställning efter krasch är på som standard; andra valfria funktioner är av. Enskilda inställningar gäller fortfarande.",
+            ["th-TH"] = "โปรดเริ่มเกมใหม่หลังเปลี่ยนตัวเลือกนี้ การกู้คืนหลังเกมขัดข้องเปิดตามค่าเริ่มต้น ส่วนคุณสมบัติเสริมอื่นปิด การตั้งค่าแต่ละรายการยังมีผล",
+            ["tr-TR"] = "Değiştirdikten sonra oyunu yeniden başlatın. Çökme kurtarma varsayılan olarak açık, diğer isteğe bağlı özellikler kapalıdır. Ayrı ayarlar geçerliliğini korur.",
         };
 
         internal static void Register(Action<string, string, string> addText)

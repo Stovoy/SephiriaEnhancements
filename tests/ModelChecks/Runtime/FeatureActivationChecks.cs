@@ -8,11 +8,13 @@ internal static class FeatureActivationChecks
 {
     internal static void Run()
     {
-        var defaults = new FeatureActivation(_ => false);
+        var defaults = new FeatureActivation(FeatureActivation.DefaultEnabled);
         foreach (FeatureId feature in Enum.GetValues<FeatureId>())
-            Require(defaults.IsEnabled(feature) == (feature is FeatureId.Settings or FeatureId.MultiplayerAccess),
-                "Fresh defaults may only install settings and joining/reconnect support: " + feature);
+            Require(defaults.IsEnabled(feature) == (feature is FeatureId.Settings or FeatureId.MultiplayerAccess or FeatureId.CrashRecovery or FeatureId.Gameplay),
+                "Fresh defaults may only load settings, multiplayer, crash recovery and shared state: " + feature);
         Require(!defaults.UsesShortcuts, "Fresh defaults must not modify input bindings");
+        Require(!new FeatureActivation(_ => false).IsEnabled(FeatureId.CrashRecovery),
+            "An explicit saved opt-out must still disable crash recovery");
         var preferences = new HashSet<FeatureId> { FeatureId.MultiplayerRules };
         var optedIn = new FeatureActivation(preferences.Contains);
         preferences.Clear();
@@ -34,7 +36,7 @@ internal static class FeatureActivationChecks
         FeatureFailure.Reset();
         FeatureFailure.ExecutionAllowed = defaults.IsEnabled;
         int calls = 0;
-        Require(!FeatureFailure.Run(FeatureId.CrashRecovery, () => calls++), "Disabled controllers/events must not run");
+        Require(!FeatureFailure.Run(FeatureId.Inventory, () => calls++), "Disabled controllers/events must not run");
         Require(FeatureFailure.Run(FeatureId.MultiplayerAccess, () => calls++), "Multiplayer support must run");
         Require(calls == 1 && FeatureFailure.PendingNotices.Length == 0,
             "Opting out must not become a feature failure or notification");
