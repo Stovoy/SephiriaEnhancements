@@ -20,6 +20,14 @@ using SephiriaEnhancements.ModelChecks.Runtime.Inventory;
 using SephiriaEnhancements.ModelChecks.Runtime.State;
 using SephiriaEnhancements.ModelChecks.Features.ResourceBarValues;
 
+if (args.FirstOrDefault() == "--disk-checkpoint-worker")
+{
+    SephiriaEnhancements.ModelChecks.Features.CrashRecovery.DiskCheckpointStoreChecks.RunWorker(args);
+    return;
+}
+SephiriaEnhancements.ModelChecks.Features.CrashRecovery.DiskCheckpointStoreChecks.Run();
+if (args.Contains("--disk-checkpoints-only")) return;
+
 SephiriaEnhancements.ModelChecks.Features.ItemCommunication.ItemCommunicationChecks.Run();
 SephiriaEnhancements.ModelChecks.Features.FixedExplorationSeed.ExplorationSeedChecks.Run();
 

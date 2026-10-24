@@ -130,5 +130,14 @@ namespace SephiriaEnhancements.Integration
             holder.OpenYes(Prefix + text(), confirmed);
             return true;
         });
+
+        internal static bool Choose(Func<string> text, Action yes, Action no) => Attempt(() =>
+        {
+            if (UIManager.Instance == null) return false;
+            var holder = UIManager.Instance.GetElement<UI_MessageBoxHolder>();
+            if (holder == null || holder.HasOpenedBox) return false;
+            holder.OpenYesNo(Prefix + text(), yes, no);
+            return true;
+        });
     }
 }

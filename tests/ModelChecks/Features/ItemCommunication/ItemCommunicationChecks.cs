@@ -14,7 +14,7 @@ internal static class ItemCommunicationChecks
             foreach (string key in new[] { ItemCommunicationLocalization.RewardMessage,
                 ItemCommunicationLocalization.BuyMessage, ItemCommunicationLocalization.ShareMessage })
             {
-                string result = ItemCommunicationMessage.Compose(texts[key], new string('a', 150) + "😀",
+                string? result = ItemCommunicationMessage.Compose(texts[key], new string('a', 150) + "😀",
                     "83 gold", "150", "Rare", "Category");
                 if (result == null || result.Length > 120 || result.Contains('\uFFFD'))
                     throw new InvalidOperationException("Chat must fit the native limit in every language.");
@@ -24,8 +24,8 @@ internal static class ItemCommunicationChecks
                     throw new InvalidOperationException("Purchase request must preserve negotiation.");
             }
         }
-        string emoji = ItemCommunicationMessage.Compose("{0}", new string('a', 118) + "😀xyz", "", "", "", "");
-        if (emoji.Length > 120 || char.IsHighSurrogate(emoji[emoji.Length - 2]))
+        string? emoji = ItemCommunicationMessage.Compose("{0}", new string('a', 118) + "😀xyz", "", "", "", "");
+        if (emoji == null || emoji.Length > 120 || char.IsHighSurrogate(emoji[emoji.Length - 2]))
             throw new InvalidOperationException("Item shortening split a surrogate pair.");
         if (ItemCommunicationMessage.Compose("{0} {1}", "item", new string('x', 120), "", "", "") != null)
             throw new InvalidOperationException("Unrepresentable quotes must not be silently truncated.");

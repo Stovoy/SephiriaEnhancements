@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 
 namespace SephiriaEnhancements.ItemCommunication
@@ -9,7 +10,7 @@ namespace SephiriaEnhancements.ItemCommunication
         internal const int MaximumLength = 120;
 
         // Keep the request and quote intact; optional item details use remaining space.
-        internal static string Compose(string template, string name, string quote,
+        internal static string? Compose(string template, string name, string quote,
             string negotiation, string rarity, string categories)
         {
             int available = MaximumLength - string.Format(template, "", quote, negotiation).Length;
@@ -32,7 +33,7 @@ namespace SephiriaEnhancements.ItemCommunication
 
     internal sealed class ItemCommunicationThrottle
     {
-        private string last;
+        private string? last;
         private double sentAt = double.NegativeInfinity;
         internal bool CanSend(string message, double now) =>
             now - sentAt >= .75 && (message != last || now - sentAt >= 2);

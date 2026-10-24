@@ -1,7 +1,7 @@
 {
   "modName": "Sephiria Enhancements",
-  "modVersion": "0.6.0-beta.1",
-  "modAuthor": "0xMashiro",
+  "modVersion": "0.6.1-beta.1",
+  "modAuthor": "0xMashiro; crash recovery fork by Stovoy",
   "dllFile": "SephiriaEnhancements.dll",
   "entryClass": "SephiriaEnhancements.SephiriaEnhancementsMod"
 }

@@ -161,6 +161,8 @@ namespace SephiriaEnhancements
             });
             InitializeFeature(FeatureId.MultiplayerAccess, () =>
                 AddController<NativeJoiningSupplies>(FeatureId.MultiplayerAccess));
+            InitializeFeature(FeatureId.CrashRecovery, () =>
+                AddController<CrashRecovery.NativeCrashRecovery>(FeatureId.CrashRecovery));
             InitializeFeature(FeatureId.CombatTargeting, () =>
                 combatTargeting = AddController<CombatTargetingController>(FeatureId.CombatTargeting));
             InitializeFeature(FeatureId.AutoCasting, () =>

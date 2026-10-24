@@ -9,6 +9,10 @@ namespace SephiriaEnhancements
         private static (FeatureId Feature, Type Patch)[] StartupPatches() =>
             new[]
             {
+                (FeatureId.CrashRecovery, typeof(global::SephiriaEnhancements.CrashRecovery.DiskAreaCheckpointPatch)),
+                (FeatureId.CrashRecovery, typeof(global::SephiriaEnhancements.CrashRecovery.DiskCheckpointResumePatch)),
+                (FeatureId.CrashRecovery, typeof(global::SephiriaEnhancements.CrashRecovery.DiskCheckpointNewRunPatch)),
+                (FeatureId.CrashRecovery, typeof(global::SephiriaEnhancements.CrashRecovery.DiskCheckpointConclusionPatch)),
                 (FeatureId.FixedExplorationSeed, typeof(global::SephiriaEnhancements.FixedExplorationSeed.Integration.ExplorationSeedNewWorldPatch)),
                 (FeatureId.ItemCommunication, typeof(global::SephiriaEnhancements.ItemCommunication.Integration.ItemCommunicationNavigationPatch)),
                 (FeatureId.CombatInsights, typeof(global::SephiriaEnhancements.Integration.DamageFeedbackCapture)),

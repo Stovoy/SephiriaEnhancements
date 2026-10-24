@@ -219,6 +219,7 @@ namespace SephiriaEnhancements.Configuration
             JoiningSupplyLocalization.Register(addText, languages);
             ModInformation.ModInformationLocalization.Register(addText, languages);
             Runtime.FeatureFailureLocalization.Register(addText, languages);
+            CrashRecovery.CrashRecoveryLocalization.Register(addText, languages);
 
         }
 

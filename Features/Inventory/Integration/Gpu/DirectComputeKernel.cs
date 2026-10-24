@@ -109,7 +109,11 @@ internal sealed class DirectComputeKernel : IDisposable
         IntPtr dxgi = IntPtr.Zero, adapter = IntPtr.Zero, description = Marshal.AllocHGlobal(304);
         try
         {
+#if NET10_0_OR_GREATER
+            Check(Marshal.QueryInterface(device, in id, out dxgi));
+#else
             Check(Marshal.QueryInterface(device, ref id, out dxgi));
+#endif
             Check(Function<GetAdapter>(dxgi, 7)(dxgi, out adapter));
             Check(Function<GetDescription>(adapter, 8)(adapter, description));
             return Marshal.PtrToStringUni(description, 128).TrimEnd('\0');
