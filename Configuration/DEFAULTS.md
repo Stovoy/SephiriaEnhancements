@@ -1,6 +1,9 @@
 # Default behavior audit
 
 Only the native settings entry and multiplayer joining/reconnection support load by default.
+With reconnect support enabled, reloading a saved exploration automatically creates a
+friends-only Steam room for two players. This covers both native saves and optional disk
+checkpoints, using the resumed world and its current chapter rather than stale lobby metadata.
 No optional feature controllers or Harmony hooks are installed until explicitly enabled.
 Existing per-feature preferences do not count as consent: new `SephiriaEnhancements.OptIn.*`
 keys default to false. New feature IDs are also off unless explicitly opted in.

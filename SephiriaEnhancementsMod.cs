@@ -163,7 +163,10 @@ namespace SephiriaEnhancements
                 AddController<DefeatRetryRuntime>(FeatureId.DefeatRetry);
             });
             InitializeFeature(FeatureId.MultiplayerAccess, () =>
-                AddController<NativeJoiningSupplies>(FeatureId.MultiplayerAccess));
+            {
+                AddController<NativeJoiningSupplies>(FeatureId.MultiplayerAccess);
+                AddController<NativeSavedRunHosting>(FeatureId.MultiplayerAccess);
+            });
             InitializeFeature(FeatureId.CrashRecovery, () =>
                 AddController<CrashRecovery.NativeCrashRecovery>(FeatureId.CrashRecovery));
             InitializeFeature(FeatureId.CombatTargeting, () =>

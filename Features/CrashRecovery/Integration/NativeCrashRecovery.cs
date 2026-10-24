@@ -140,7 +140,6 @@ namespace SephiriaEnhancements.CrashRecovery
                     }
                     throw;
                 }
-                StartCoroutine(NativeRecoveryLobby.Restore(bundle.Metadata));
                 SupportLogger.Record("disk_checkpoint_restored");
             }
             catch (Exception exception)

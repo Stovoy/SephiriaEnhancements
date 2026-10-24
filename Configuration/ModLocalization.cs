@@ -178,6 +178,7 @@ namespace SephiriaEnhancements.Configuration
         {
             string[] languages = LocalizationLanguages.All;
             FeatureActivationLocalization.Register(addText);
+            MultiplayerAccess.RecoveredLobbyLocalization.Register(addText);
             LocalizationGroup.Register(addText, languages, Texts);
             LocalizationGroup.Register(addText, languages, SuiteTexts);
             foreach (string language in languages)
