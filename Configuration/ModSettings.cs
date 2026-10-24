@@ -17,15 +17,15 @@ namespace SephiriaEnhancements.Configuration
 
         internal static bool HitStreakFeedback
         {
-            get => OptionsBinding.Instance?.DeviceOptions?.GetBool(HitStreakFeedbackKey, true) ??
-                true;
+            get => OptionsBinding.Instance?.DeviceOptions?.GetBool(HitStreakFeedbackKey, false) ??
+                false;
             set => OptionsBinding.Instance?.DeviceOptions?.SetBool(HitStreakFeedbackKey, value);
         }
 
         internal static CombatInsightsDisplayPolicy DisplayPolicy
         {
             get => (CombatInsightsDisplayPolicy)Mathf.Clamp(
-                OptionsBinding.Instance?.DeviceOptions?.GetInt(DisplayPolicyKey, 0) ?? 0, 0, 3);
+                OptionsBinding.Instance?.DeviceOptions?.GetInt(DisplayPolicyKey, 3) ?? 3, 0, 3);
             set => OptionsBinding.Instance?.DeviceOptions?.SetInt(DisplayPolicyKey,
                 Mathf.Clamp((int)value, 0, 3));
         }

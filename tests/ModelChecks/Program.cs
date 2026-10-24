@@ -74,6 +74,7 @@ if (args.Contains("--costume-appearance-only"))
     LocalizationChecks.Run();
     return;
 }
+SephiriaEnhancements.ModelChecks.Runtime.FeatureActivationChecks.Run();
 SephiriaEnhancements.ModelChecks.Runtime.FeatureFailureChecks.Run();
 if (args.Contains("--multiplayer-rules-only"))
 {

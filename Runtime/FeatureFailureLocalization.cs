@@ -9,7 +9,7 @@ namespace SephiriaEnhancements.Runtime
     {
         internal const string Message = "SephiriaEnhancements.FeatureFailure.Message";
         internal const string SettingsHelp = "SephiriaEnhancements.FeatureFailure.SettingsHelp";
-        private static string FeatureKey(FeatureId feature) => "SephiriaEnhancements.FeatureFailure." + feature;
+        internal static string FeatureKey(FeatureId feature) => "SephiriaEnhancements.FeatureFailure." + feature;
         private static readonly string[] Keys = new[] { Message }.Concat(
             Enum.GetValues(typeof(FeatureId)).Cast<FeatureId>().Select(FeatureKey)).Append(SettingsHelp).ToArray();
         private static readonly Dictionary<string, string[]> Texts = new()

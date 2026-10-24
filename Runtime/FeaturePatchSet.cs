@@ -15,7 +15,7 @@ namespace SephiriaEnhancements.Runtime
 
         internal bool Install(FeatureId feature, Type patchType)
         {
-            if (!FeatureFailure.IsAvailable(feature)) return false;
+            if (!FeatureFailure.IsAvailable(feature) || FeatureFailure.ExecutionAllowed?.Invoke(feature) == false) return false;
             if (!owners.TryGetValue(feature, out Harmony owner))
                 owners.Add(feature, owner = new Harmony(ownerPrefix + "." + feature));
             try

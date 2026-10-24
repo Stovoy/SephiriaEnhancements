@@ -177,6 +177,7 @@ namespace SephiriaEnhancements.Configuration
         internal static void Register(Action<string, string, string> addText)
         {
             string[] languages = LocalizationLanguages.All;
+            FeatureActivationLocalization.Register(addText);
             LocalizationGroup.Register(addText, languages, Texts);
             LocalizationGroup.Register(addText, languages, SuiteTexts);
             foreach (string language in languages)

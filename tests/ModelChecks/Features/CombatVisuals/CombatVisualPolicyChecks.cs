@@ -7,7 +7,7 @@ internal static class CombatVisualPolicyChecks
 {
     internal static void Run()
     {
-        if (CombatVisualPolicy.DefaultPreset != CombatVisualPreset.Balanced ||
+        if (CombatVisualPolicy.DefaultPreset != CombatVisualPreset.FollowGame ||
             CombatVisualPolicy.TryGetTransparencyLevel(
                 CombatVisualPreset.FollowGame,
                 CombatVisualSourceRelation.LocalCompanion,

@@ -23,8 +23,8 @@ namespace SephiriaEnhancements.CombatTargeting
         {
             get => (TargetingMode)Mathf.Clamp(
                 OptionsBinding.Instance?.DeviceOptions?.GetInt(
-                    TargetingModeKey, (int)TargetingMode.Automatic) ??
-                (int)TargetingMode.Automatic,
+                    TargetingModeKey, (int)TargetingMode.Disabled) ??
+                (int)TargetingMode.Disabled,
                 0, TargetingModeCount - 1);
             set => OptionsBinding.Instance?.DeviceOptions?.SetInt(TargetingModeKey,
                 Mathf.Clamp((int)value, 0, TargetingModeCount - 1));

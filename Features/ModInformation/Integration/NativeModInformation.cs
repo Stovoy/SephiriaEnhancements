@@ -17,12 +17,12 @@ namespace SephiriaEnhancements.ModInformation.Integration
         private const string AutomaticKey = "SephiriaEnhancements.ModInformation.AutomaticUpdateCheck";
         internal static bool ShowWelcome
         {
-            get => OptionsBinding.Instance?.DeviceOptions?.GetBool(WelcomeKey, true) ?? true;
+            get => OptionsBinding.Instance?.DeviceOptions?.GetBool(WelcomeKey, false) ?? false;
             set => OptionsBinding.Instance?.DeviceOptions?.SetBool(WelcomeKey, value);
         }
         internal static bool AutomaticUpdateCheck
         {
-            get => OptionsBinding.Instance?.DeviceOptions?.GetBool(AutomaticKey, true) ?? true;
+            get => OptionsBinding.Instance?.DeviceOptions?.GetBool(AutomaticKey, false) ?? false;
             set => OptionsBinding.Instance?.DeviceOptions?.SetBool(AutomaticKey, value);
         }
     }

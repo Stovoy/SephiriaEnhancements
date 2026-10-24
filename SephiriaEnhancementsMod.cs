@@ -73,12 +73,14 @@ namespace SephiriaEnhancements
             activeInstance?.OnModUnloaded();
             activeInstance = this;
             FeatureFailure.Reset();
+            FeatureActivationSettings.Capture();
+            FeatureFailure.ExecutionAllowed = FeatureActivationSettings.IsActive;
             RegisterFeatureCleanup();
             NativeModNotifications.Reset();
             FeatureFailure.Report = ReportFeatureFailure;
             SupportLogger.Initialize();
             Application.quitting += OnModUnloaded;
-            StartupProfiler.Begin();
+            if (FeatureActivationSettings.IsActive(FeatureId.DeveloperTools)) StartupProfiler.Begin();
             GameLoadProfiler.Reset();
             long loadStartedAt = Stopwatch.GetTimestamp();
             long phaseStartedAt = loadStartedAt;
@@ -102,8 +104,9 @@ namespace SephiriaEnhancements
             phaseStartedAt = Stopwatch.GetTimestamp();
             try
             {
-                NativeControlCoordinator.Initialize();
-                NativeControlCoordinator.PreparePlayerInput(PlayerInputController.Instance);
+                if (FeatureActivationSettings.UsesShortcuts) NativeControlCoordinator.Initialize();
+                if (FeatureActivationSettings.UsesShortcuts)
+                    NativeControlCoordinator.PreparePlayerInput(PlayerInputController.Instance);
             }
             catch (Exception ex)
             {
@@ -195,6 +198,7 @@ namespace SephiriaEnhancements
                 DefeatRetryClientRestore.IsAvailable && DefeatRetryPlayerRestorePatch.IsAvailable);
             foreach (var patch in StartupPatches())
             {
+                if (!FeatureActivationSettings.IsActive(patch.Feature)) continue;
                 if (TryPatch(patch.Feature, patch.Patch, out float patchMilliseconds))
                 {
                     successfulPatchCount++;
@@ -436,6 +440,7 @@ namespace SephiriaEnhancements
             float preparationMilliseconds = 0f;
             float applicationMilliseconds = 0f;
             bool succeeded = false;
+            if (!FeatureActivationSettings.IsActive(feature)) return false;
             if (!FeatureFailure.IsAvailable(feature)) return false;
             try
             {

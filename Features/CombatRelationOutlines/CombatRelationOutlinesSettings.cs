@@ -7,7 +7,7 @@ namespace SephiriaEnhancements.CombatRelationOutlines
 
         internal static bool Enabled
         {
-            get => OptionsBinding.Instance?.DeviceOptions?.GetBool(EnabledKey, true) ?? true;
+            get => OptionsBinding.Instance?.DeviceOptions?.GetBool(EnabledKey, false) ?? false;
             set => OptionsBinding.Instance?.DeviceOptions?.SetBool(EnabledKey, value);
         }
 

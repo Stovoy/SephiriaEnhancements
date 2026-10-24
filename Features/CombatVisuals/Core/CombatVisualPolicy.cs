@@ -42,7 +42,7 @@ namespace SephiriaEnhancements.CombatVisuals
     internal static class CombatVisualPolicy
     {
         internal const CombatVisualPreset DefaultPreset =
-            CombatVisualPreset.Balanced;
+            CombatVisualPreset.FollowGame;
 
         internal static bool TryGetTransparencyLevel(CombatVisualPreset preset,
             CombatVisualSourceRelation relation, CombatVisualSurface surface,

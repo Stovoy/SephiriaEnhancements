@@ -22,6 +22,7 @@ namespace SephiriaEnhancements.Runtime
         private static readonly Queue<FeatureId> pending = new();
         private static readonly HashSet<FeatureId> notices = new();
         internal static Action<FeatureId, Exception> Report;
+        internal static Func<FeatureId, bool> ExecutionAllowed;
 
         internal static FeatureId[] PendingNotices => new List<FeatureId>(notices).ToArray();
         internal static void AcknowledgeNotice(FeatureId feature) => notices.Remove(feature);
@@ -34,6 +35,7 @@ namespace SephiriaEnhancements.Runtime
             pending.Clear();
             notices.Clear();
             Report = null;
+            ExecutionAllowed = null;
         }
 
         internal static void Disable(FeatureId feature, Exception exception)
@@ -64,7 +66,7 @@ namespace SephiriaEnhancements.Runtime
 
         internal static bool Run(FeatureId feature, Action action)
         {
-            if (!IsAvailable(feature)) return false;
+            if (!IsAvailable(feature) || ExecutionAllowed?.Invoke(feature) == false) return false;
             try { action(); return IsAvailable(feature); }
             catch (Exception exception) { Disable(feature, exception); return false; }
         }

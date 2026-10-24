@@ -27,7 +27,7 @@ namespace SephiriaEnhancements.CombatVisuals
         internal static EffectTransparencyLevel CompanionBody
         {
             get => (EffectTransparencyLevel)GetInt(CompanionBodyKey,
-                (int)EffectTransparencyLevel.SlightlyTransparent,
+                (int)EffectTransparencyLevel.Normal,
                 TransparencyLevelCount);
             set => SetInt(CompanionBodyKey, (int)value, TransparencyLevelCount);
         }
@@ -35,7 +35,7 @@ namespace SephiriaEnhancements.CombatVisuals
         internal static EffectTransparencyLevel CompanionEffects
         {
             get => (EffectTransparencyLevel)GetInt(CompanionEffectsKey,
-                (int)EffectTransparencyLevel.VeryTransparent,
+                (int)EffectTransparencyLevel.Normal,
                 TransparencyLevelCount);
             set => SetInt(CompanionEffectsKey, (int)value, TransparencyLevelCount);
         }
@@ -43,7 +43,7 @@ namespace SephiriaEnhancements.CombatVisuals
         internal static CombatOutlineScope OutlineScope
         {
             get => (CombatOutlineScope)GetInt(OutlineScopeKey,
-                (int)CombatOutlineScope.HostileAndFriendly, OutlineScopeCount);
+                (int)CombatOutlineScope.Off, OutlineScopeCount);
             set => SetInt(OutlineScopeKey, (int)value, OutlineScopeCount);
         }
 

@@ -12,6 +12,7 @@ namespace SephiriaEnhancements.Integration
 
         internal static void Initialize()
         {
+            if (!Configuration.FeatureActivationSettings.UsesShortcuts) return;
             InputActionAsset canonical = OptionsBinding.Instance?.actionAsset;
             if (canonical == null)
             {
@@ -29,6 +30,7 @@ namespace SephiriaEnhancements.Integration
 
         internal static void PreparePlayerInput(PlayerInputController input)
         {
+            if (!Configuration.FeatureActivationSettings.UsesShortcuts) return;
             OfficialCombatBindings.
                 EnsureDefaultBindingInitializationIfEnabled();
             OfficialUiKeyboardBindings.EnsureFallbackBindingInitialization();
@@ -70,6 +72,7 @@ namespace SephiriaEnhancements.Integration
 
         internal static void ReloadOfficialBindings()
         {
+            if (!Configuration.FeatureActivationSettings.UsesShortcuts) return;
             InputActionAsset canonical = OptionsBinding.Instance?.actionAsset;
             if (canonical == null)
             {

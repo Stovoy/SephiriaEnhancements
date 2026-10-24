@@ -10,6 +10,8 @@ namespace SephiriaEnhancements.Diagnostics
     internal static class SupportLogger
     {
         private static SupportLog file;
+        private static bool Enabled => Array.Exists(Environment.GetCommandLineArgs(), argument =>
+            string.Equals(argument, "-sephiria-enhancements-supportlog", StringComparison.OrdinalIgnoreCase));
 
         internal static string DirectoryPath => Path.Combine(SaveData.CommonPath, "Mods",
             "SephiriaEnhancements", "Logs", "Support");
@@ -17,6 +19,7 @@ namespace SephiriaEnhancements.Diagnostics
         internal static void Initialize()
         {
             Shutdown();
+            if (!Enabled) return;
             try
             {
                 string version = typeof(SupportLogger).Assembly
@@ -53,18 +56,21 @@ namespace SephiriaEnhancements.Diagnostics
 
         internal static void Info(string code, object message)
         {
+            if (!Enabled) return;
             Record(code);
             Debug.Log(message);
         }
 
         internal static void Warning(string code, object message)
         {
+            if (!Enabled) return;
             Record(code, level: "WARN");
             Debug.LogWarning(message);
         }
 
         internal static void Error(string code, object message)
         {
+            if (!Enabled) return;
             Record(code, level: "ERROR");
             Debug.LogError(message);
         }

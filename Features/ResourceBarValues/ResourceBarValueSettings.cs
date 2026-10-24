@@ -4,8 +4,7 @@ namespace SephiriaEnhancements.ResourceBarValues
     {
         internal static bool Get(ResourceBarValueSetting setting)
         {
-            bool fallback = setting == ResourceBarValueSetting.MiniBossHealthNumbers ||
-                setting == ResourceBarValueSetting.BossHealthNumbers;
+            const bool fallback = false;
             return OptionsBinding.Instance?.DeviceOptions?.GetBool(Key(setting), fallback) ?? fallback;
         }
 
