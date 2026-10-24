@@ -5,7 +5,6 @@ using System.Reflection;
 using HarmonyLib;
 using Mirror;
 using SephiriaEnhancements.Configuration;
-using SephiriaEnhancements.Diagnostics;
 using SephiriaEnhancements.Integration;
 using UnityEngine;
 
@@ -66,7 +65,6 @@ namespace SephiriaEnhancements.CrashRecovery
             SaveData account = SaveManager.Current.Copy();
             Store.Commit(metadata, path => NativeCheckpointCodec.Write(account, path),
                 path => NativeCheckpointCodec.Write(run, path));
-            SupportLogger.Record("disk_checkpoint_committed", "players=" + run.GetInt("SavedPlayerCount", 0));
         }
 
         internal static void CloseRun()
@@ -140,11 +138,9 @@ namespace SephiriaEnhancements.CrashRecovery
                     }
                     throw;
                 }
-                SupportLogger.Record("disk_checkpoint_restored");
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                SupportLogger.Failure("disk_checkpoint_restore_failed", exception);
                 NativeModNotifications.Confirm(() => ModLocalization.Get(CrashRecoveryLocalization.Failed), null);
             }
         }

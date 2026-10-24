@@ -3,7 +3,6 @@ using System.Collections;
 using HeathenEngineering.SteamworksIntegration;
 using Mirror;
 using SephiriaEnhancements.Configuration;
-using SephiriaEnhancements.Diagnostics;
 using SephiriaEnhancements.Integration;
 using Steamworks;
 using UnityEngine;
@@ -41,7 +40,6 @@ namespace SephiriaEnhancements.MultiplayerAccess.Integration
             if (!NetworkServer.active) yield break;
             if (!Arrived())
             {
-                Announce(false);
                 yield break;
             }
 
@@ -57,17 +55,15 @@ namespace SephiriaEnhancements.MultiplayerAccess.Integration
                 manager.Create("Recovered Sephiria run", ELobbyType.k_ELobbyTypeFriendsOnly, 2);
                 requested = true;
             }
-            catch (Exception exception) { SupportLogger.Failure("saved_run_lobby_create_failed", exception); }
+            catch (Exception) { }
             if (!requested)
             {
-                Announce(false);
                 yield break;
             }
             deadline = Time.realtimeSinceStartup + 10f;
             while (NetworkServer.active && !manager.HasLobby && Time.realtimeSinceStartup < deadline)
                 yield return null;
             if (!NetworkServer.active) yield break;
-            bool ready = false;
             try
             {
                 if (!manager.HasLobby || !manager.Lobby.IsOwner)
@@ -83,10 +79,8 @@ namespace SephiriaEnhancements.MultiplayerAccess.Integration
                 lobby["pw"] = "open";
                 lobby.SetGameServer(UserData.Me.id);
                 manager.SetJoinable(true);
-                ready = true;
             }
-            catch (Exception exception) { SupportLogger.Failure("saved_run_lobby_restore_failed", exception); }
-            Announce(ready);
+            catch (Exception) { }
         }
 
         private static string CurrentChapter()
@@ -105,7 +99,5 @@ namespace SephiriaEnhancements.MultiplayerAccess.Integration
                 !string.IsNullOrEmpty(player.currentFloorGuid) && DungeonManager.Instance != null;
         }
 
-        private static void Announce(bool ready) => NativeModNotifications.Important("saved-run-lobby",
-            () => ModLocalization.Get(ready ? RecoveredLobbyLocalization.Ready : RecoveredLobbyLocalization.Failed), 8f);
     }
 }

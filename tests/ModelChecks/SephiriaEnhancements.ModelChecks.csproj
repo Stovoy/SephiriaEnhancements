@@ -10,7 +10,6 @@
   <ItemGroup>
     <Compile Include="../../Features/CrashRecovery/Core/*.cs" />
     <Compile Include="../../Features/CrashRecovery/Presentation/CrashRecoveryLocalization.cs" />
-    <Compile Include="../../Features/MultiplayerAccess/Presentation/RecoveredLobbyLocalization.cs" />
     <Compile Include="../../Features/FixedExplorationSeed/ExplorationSeedInput.cs" />
     <Compile Include="../../Features/FixedExplorationSeed/ExplorationSeedLocalization.cs" />
     <Compile Include="../../Integration/NumberInputEditing.cs" />

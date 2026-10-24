@@ -11,7 +11,6 @@ namespace SephiriaEnhancements.Integration
     // Display is local. Feature bridges own network delivery and operation identities.
     internal static class NativeModNotifications
     {
-        internal const string Prefix = "[Sephiria Enhancements] ";
         private static readonly Dictionary<string, (Func<string> Text, Action Shown)> pending = new();
         private static readonly HashSet<string> delivered = new();
         private static PlayerAvatar contextPlayer;
@@ -74,7 +73,7 @@ namespace SephiriaEnhancements.Integration
                 !ReferenceEquals(AccessTools.Field(typeof(UI_HUDLogViewer), "unitAvatar").GetValue(viewer), player)) return false;
             // Use the same local event as native player logs, never DungeonManager.Chat.
             foreach (string line in text().Split('\n'))
-                if (!string.IsNullOrWhiteSpace(line)) player.WriteLog(Prefix + line, Color.cyan);
+                if (!string.IsNullOrWhiteSpace(line)) player.WriteLog(line, Color.cyan);
             return true;
         });
 
@@ -89,7 +88,7 @@ namespace SephiriaEnhancements.Integration
                 !ReferenceEquals(AccessTools.Field(typeof(UI_SystemMessage), "unitAvatar").GetValue(message), player)) return false;
             // Do not overwrite an official message (or another Mod's message).
             if (message.IsOpened && message.messageText.text != lastToast) return false;
-            message.Open(Prefix + text(), seconds);
+            message.Open(text(), seconds);
             lastToast = message.messageText.text;
             return true;
         });
@@ -127,7 +126,7 @@ namespace SephiriaEnhancements.Integration
             if (UIManager.Instance == null) return false;
             var holder = UIManager.Instance.GetElement<UI_MessageBoxHolder>();
             if (holder == null || holder.HasOpenedBox) return false;
-            holder.OpenYes(Prefix + text(), confirmed);
+            holder.OpenYes(text(), confirmed);
             return true;
         });
 
@@ -136,7 +135,7 @@ namespace SephiriaEnhancements.Integration
             if (UIManager.Instance == null) return false;
             var holder = UIManager.Instance.GetElement<UI_MessageBoxHolder>();
             if (holder == null || holder.HasOpenedBox) return false;
-            holder.OpenYesNo(Prefix + text(), yes, no);
+            holder.OpenYesNo(text(), yes, no);
             return true;
         });
     }
