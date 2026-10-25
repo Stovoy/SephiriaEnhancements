@@ -226,11 +226,8 @@ namespace SephiriaEnhancements.MultiplayerAccess.Integration
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]
         private static bool PrefixCore(PlayerSpawner __instance, string playerGuid)
         {
-            if (MidRunAdmissionRuntime.HasSavedPlayer(playerGuid))
-            {
-                MidRunAdmissionRuntime.RemoveConnection(__instance.connectionToClient);
-                return true;
-            }
+            if (NativeSavedPlayerIdentity.TryRestore(__instance, playerGuid))
+                return false;
 
             if (!MidRunAdmissionRuntime.IsFreshConnection(__instance.connectionToClient) || SaveManager.CurrentRun == null)
             {

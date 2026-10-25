@@ -8,6 +8,7 @@
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="../../Features/MultiplayerAccess/Core/SavedPlayerIdentity.cs" />
     <Compile Include="../../Features/CrashRecovery/Core/*.cs" />
     <Compile Include="../../Features/CrashRecovery/Presentation/CrashRecoveryLocalization.cs" />
     <Compile Include="../../Features/FixedExplorationSeed/ExplorationSeedInput.cs" />

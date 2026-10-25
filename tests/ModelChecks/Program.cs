@@ -25,6 +25,7 @@ if (args.FirstOrDefault() == "--disk-checkpoint-worker")
     SephiriaEnhancements.ModelChecks.Features.CrashRecovery.DiskCheckpointStoreChecks.RunWorker(args);
     return;
 }
+SavedPlayerIdentityChecks.Run();
 SephiriaEnhancements.ModelChecks.Features.CrashRecovery.DiskCheckpointStoreChecks.Run();
 if (args.Contains("--disk-checkpoints-only")) return;
 
